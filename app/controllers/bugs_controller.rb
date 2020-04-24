@@ -4,8 +4,9 @@ class BugsController < ApplicationController
   # GET /bugs
   def index
     @bugs = Bug.all
+    render :json => @bugs,
+    include: :months
 
-    render json: @bugs
   end
 
   # GET /bugs/1
@@ -58,6 +59,7 @@ class BugsController < ApplicationController
       :start_time,
       :end_time,
       :internal_id,
+      :month_ids => []
     )
   end
 end
