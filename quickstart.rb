@@ -52,5 +52,5 @@ puts 'Name, Major:'
 puts 'No data found.' if response.values.empty?
 response.values.each do |row|
   puts # Print columns A and E, which correspond to indices 0 and 4.
-       '#{row[0]}, #{row[4]}'
+  '#{row[0]}, #{row[4]}'
 end

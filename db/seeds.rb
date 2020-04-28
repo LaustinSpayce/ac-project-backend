@@ -51,7 +51,12 @@ service.authorization = authorize
 
 spreadsheet_id = '1D6qJt4PCa0Zd4dPoYROxasE5na1ciykUD5qMD1L0YC8'
 range = 'Bugs - North!A2:AA'
-bug_response = service.get_spreadsheet_values spreadsheet_id, range
+bug_response =
+  service.get_spreadsheet_values(
+    spreadsheet_id,
+    range,
+    value_render_option: 'FORMULA'
+  )
 puts 'No data found.' if bug_response.values.empty?
 
 puts 'all done'
@@ -79,14 +84,19 @@ bug_response.values.each do |bug|
   months = []
 
   (10..22).each { |num| months << (num - 9) if bug[num] == 'Yes' }
-  puts 'months'
-  puts months
-  puts 'adding bug'
-  puts bug[1]
-
+  # puts 'months'
+  # puts months
+  # puts 'adding bug'
+  # puts bug[1]
+  image_string = bug[2]
+  image_string['=IMAGE("'] = ''
+  image_string['")'] = ''
+  # puts 'AAAAAA IMAGE AAAAA'
+  # puts image_string
+  # puts 'AAAAAAAAAAAAAAAAAA'
   Bug.create(
-    name: "#{bug[1]}",
-    image: bug[2],
+    name: bug[1],
+    image: image_string,
     sell: bug[4],
     where: bug[5],
     weather: bug[6],
