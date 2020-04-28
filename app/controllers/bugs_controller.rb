@@ -11,7 +11,8 @@ class BugsController < ApplicationController
 
   # GET /bugs/1
   def show
-    render json: @bug
+    render json: @bug,
+    include: :months
   end
 
   # POST /bugs
