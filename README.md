@@ -1,24 +1,9 @@
-# README
+# Animal Crossing Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a fan website for the game Animal Crossing.
 
-Things you may want to cover:
+Aims of the website:
 
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
+- List every bug, item, fish etc. etc.
+- A user can track what bugs, fish, villagers they have caught or have.
+  -Users can create "collections" to share with others. A collection can be a wishlist of items, or villagers they wish to have. Or a bunch of items they have available to catalogue with other players and so on and so forth.

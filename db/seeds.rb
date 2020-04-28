@@ -34,11 +34,12 @@ def authorize
   if credentials.nil?
     url = authorizer.get_authorization_url base_url: OOB_URI
     puts 'Open the following URL in the browser and enter the ' \
-         'resulting code after authorization:\n' + url
+           'resulting code after authorization:\n' + url
     code = gets
-    credentials = authorizer.get_and_store_credentials_from_code(
-      user_id: user_id, code: code, base_url: OOB_URI
-    )
+    credentials =
+      authorizer.get_and_store_credentials_from_code(
+        user_id: user_id, code: code, base_url: OOB_URI
+      )
   end
   credentials
 end
@@ -52,7 +53,6 @@ spreadsheet_id = '1D6qJt4PCa0Zd4dPoYROxasE5na1ciykUD5qMD1L0YC8'
 range = 'Bugs - North!A2:AA'
 bug_response = service.get_spreadsheet_values spreadsheet_id, range
 puts 'No data found.' if bug_response.values.empty?
-
 
 puts 'all done'
 
@@ -71,19 +71,14 @@ months = %w[
   December
 ]
 
-months.each do |month|
-  Month.create(name: month)
-end
+months.each { |month| Month.create(name: month) }
 
 puts 'adding bugs to db now'
 
 bug_response.values.each do |bug|
-
   months = []
 
-  (10..22).each do |num|
-    months << (num - 9) if bug[num] == 'Yes'
-  end
+  (10..22).each { |num| months << (num - 9) if bug[num] == 'Yes' }
   puts 'months'
   puts months
   puts 'adding bug'
@@ -99,7 +94,7 @@ bug_response.values.each do |bug|
     start_time: bug[8],
     end_time: bug[9],
     internal_id: bug[26],
-    month_ids: months,
+    month_ids: months
   )
   puts bug[1]
   puts 'has been added to the database'
