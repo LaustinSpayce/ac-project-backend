@@ -21,6 +21,9 @@ gem 'graphql_devise'
 # Use google api to get data from spreadsheets
 gem 'google-api-client', '~> 0.34'
 
+# graphiql to debug graphql queries within rails
+gem "graphiql-rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
