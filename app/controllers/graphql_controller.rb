@@ -8,12 +8,11 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = {}
-    result =
-      AcBackendSchema.execute(
-        query,
-        variables: variables, context: context, operation_name: operation_name
-      )
+    context = {
+      # Query context goes here, for example:
+      # current_user: current_user,
+    }
+    result = AcBackendSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue => e
     raise e unless Rails.env.development?
@@ -26,7 +25,11 @@ class GraphqlController < ApplicationController
   def ensure_hash(ambiguous_param)
     case ambiguous_param
     when String
-      ambiguous_param.present? ? ensure_hash(JSON.parse(ambiguous_param)) : {}
+      if ambiguous_param.present?
+        ensure_hash(JSON.parse(ambiguous_param))
+      else
+        {}
+      end
     when Hash, ActionController::Parameters
       ambiguous_param
     when nil
@@ -40,9 +43,6 @@ class GraphqlController < ApplicationController
     logger.error e.message
     logger.error e.backtrace.join("\n")
 
-    render json: {
-             errors: [{ message: e.message, backtrace: e.backtrace }], data: {}
-           },
-           status: 500
+    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
   end
 end
