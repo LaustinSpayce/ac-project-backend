@@ -59,8 +59,6 @@ bug_response =
   )
 puts 'No data found.' if bug_response.values.empty?
 
-puts 'all done'
-
 months = %w[
   January
   February
@@ -78,7 +76,7 @@ months = %w[
 
 months.each { |month| Month.create(name: month) }
 
-puts 'adding bugs to db now'
+puts 'adding bugs'
 
 bug_response.values.each do |bug|
   months = []
@@ -106,32 +104,16 @@ bug_response.values.each do |bug|
     internal_id: bug[26],
     month_ids: months
   )
-  puts bug[1]
-  puts 'has been added to the database'
 end
 
-# Bug.create(
-#   name: 'agrias butterfly',
-#   image: 'https://i.imgur.com/zpCLFPW.png',
-#   sell: 3000,
-#   where: 'Flying near flowers',
-#   weather: 'Any except rain',
-#   rarity: 'Uncommon',
-#   start_time: '8:00AM',
-#   end_time: '5:00 PM',
-#   internal_id: 620,
-#   month_ids: [4,5,6,7,8,9]
-# )
+puts 'bugs added'
 
-# Bug.create(
-#   name: 'ant',
-#   image: 'https://i.imgur.com/s7rnYTT.png',
-#   sell: 80,
-#   where: 'On rotten turnips',
-#   weather: 'Any weather',
-#   rarity: 'common',
-#   start_time: '',
-#   end_time: '',
-#   internal_id: 588,
-#   month_ids: [1,2,3,4,5,6,7,8,9,10,11,12]
-# )
+puts 'adding user'
+# create our first user
+User.create(email: "stuart.myers@gmail.com", password: "password123")
+# Automatically make a first island record. Fill it in.
+first_island = Island.first
+first_island.island_name = "KampongUBK"
+first_island.player_name = "Laustin"
+first_island.save
+puts 'user and island added'
