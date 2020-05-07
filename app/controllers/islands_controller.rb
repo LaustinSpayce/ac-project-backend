@@ -1,5 +1,5 @@
 class IslandsController < ApplicationController
-  before_action :set_island, only: [:show, :update, :destroy]
+  before_action :set_island, only: %i[show update destroy]
 
   # GET /islands
   def index
@@ -39,13 +39,14 @@ class IslandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_island
-      @island = Island.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def island_params
-      params.require(:island).permit(:player_name, :island_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_island
+    @island = Island.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def island_params
+    params.require(:island).permit(:player_name, :island_name)
+  end
 end
