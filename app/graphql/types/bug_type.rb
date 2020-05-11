@@ -8,6 +8,7 @@ module Types
     field :weather, String, null: true
     field :rarity, String, null: true
     field :months, [Types::MonthType], null: true
+    # field :bugs_collection, [Types::BugCollectionType], null: true
     field :internal_id, Integer, null: true
   end
 end
