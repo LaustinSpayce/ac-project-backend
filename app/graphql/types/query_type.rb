@@ -23,7 +23,9 @@ module Types
     end
 
     def island(id:)
-      Island.find(id)
+      if current_user.id == id
+        Island.find(id)
+      end
     end
   end
 end
