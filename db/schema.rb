@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_074345) do
+ActiveRecord::Schema.define(version: 2020_05_11_071941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bug_collections", force: :cascade do |t|
     t.bigint "bug_id"
-    t.bigint "user_id"
+    t.bigint "island_id"
     t.boolean "collected"
     t.boolean "donated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bug_id"], name: "index_bug_collections_on_bug_id"
-    t.index ["user_id"], name: "index_bug_collections_on_user_id"
+    t.index ["island_id"], name: "index_bug_collections_on_island_id"
   end
 
   create_table "bugs", force: :cascade do |t|
