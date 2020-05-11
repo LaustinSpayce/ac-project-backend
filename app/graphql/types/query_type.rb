@@ -16,15 +16,14 @@ module Types
     def bug(id:)
       Bug.find(id)
     end
-
    
-    field :island, Types::IslandType, null: false do
-      argument :id, ID, required: true
+    field :my_island, Types::IslandType, null: false do
     end
 
-    def island(id:)
-      if current_user.id == id
-        Island.find(id)
+    def my_island
+      current_user = context[:current_user]
+      if current_user
+        current_user.island
       end
     end
   end

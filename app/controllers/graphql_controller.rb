@@ -9,7 +9,14 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = {} # current_user: current_user,
+    context = {
+      current_user: current_user,
+    }
+    puts 'AAAAAAAAAAAAAAA'
+    puts current_user
+    puts 'AAAAAAAAAAAAAAA'
+    puts 'ISLALANANANA'
+    puts current_user.island.island_name
     result =
       AcBackendSchema.execute(
         query,

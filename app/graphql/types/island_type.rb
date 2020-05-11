@@ -1,6 +1,6 @@
 module Types
   class IslandType < Types::BaseObject
-    field :id, ID, null: false
+    field :id, ID, null: true
     field :player_name, String, null: false
     field :island_name, String, null: true
     field :user_id, Int, null: false
