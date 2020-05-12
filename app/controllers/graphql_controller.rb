@@ -3,15 +3,12 @@ class GraphqlController < ApplicationController
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
   # protect_from_forgery with: :null_session
-  
 
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = {
-      current_user: current_user,
-    }
+    context = { current_user: current_user }
     puts 'AAAAAAAAAAAAAAA'
     puts current_user
     puts 'AAAAAAAAAAAAAAA'

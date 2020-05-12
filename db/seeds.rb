@@ -110,18 +110,18 @@ puts 'bugs added'
 
 puts 'adding user'
 # create our first user
-User.create(email: "stuart.myers@gmail.com", password: "password123")
+User.create(email: 'stuart.myers@gmail.com', password: 'password123')
 # Automatically make a first island record. Fill it in.
 first_island = Island.first
-first_island.island_name = "KampongUBK"
-first_island.player_name = "Laustin"
+first_island.island_name = 'KampongUBK'
+first_island.player_name = 'Laustin'
 first_island.save
 puts 'user and island added'
 
 # create our first user
-User.create(email: "dummy@example.com", password: "password12345")
+User.create(email: 'dummy@example.com', password: 'password12345')
 # Automatically make a first island record. Fill it in.
 second_island = Island.last
-second_island.island_name = "Not A Good Island"
-second_island.player_name = "Bloop"
+second_island.island_name = 'Not A Good Island'
+second_island.player_name = 'Bloop'
 second_island.save

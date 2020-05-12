@@ -4,7 +4,7 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :bugs, [Types::BugType], null: false
-    
+
     def bugs
       Bug.all
     end
@@ -16,15 +16,13 @@ module Types
     def bug(id:)
       Bug.find(id)
     end
-   
+
     field :my_island, Types::IslandType, null: false do
     end
 
     def my_island
       current_user = context[:current_user]
-      if current_user
-        current_user.island
-      end
+      current_user.island if current_user
     end
   end
 end
